@@ -9,8 +9,8 @@ Saves Cracked accounts to file w/ list of files.
 
 # Mods
   You will need to do a small hack to the mega.go file of (go-mega);
-  You need to change "API_URL" to a var like so
-  var 	API_URL              = "https://eu.api.mega.co.nz"
+  You need to change "API_URL" from Const to a Var like so
+  * var 	API_URL   = "https://eu.api.mega.co.nz"
 
 
 # Compiling
