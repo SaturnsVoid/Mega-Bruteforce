@@ -1,10 +1,11 @@
 # Mega.co.nz Bruteforcer
-10 minutes of work, I gave up on. Was ment to bruteforce Mega.co.nz logins and scan there files. Issue is the API rate limit... Maybe add a proxy switcher.
-DOES NOT EXPORT OUT OF FILE, LISTS ALL LOGINS IN CONSOLE ONLY.
+Bruteforce Mega.co.nz logins and scan there files. Issue is the API rate limit... Maybe add a proxy switcher.
+Saves Cracked accounts to file w/ list of files.
 
 # Features
 * Gives Username and Password
 * Lists files
+* Saves to Cracked File listsing login and Filetree
 
 # Compiling
   Import needed packages.
