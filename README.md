@@ -1,4 +1,4 @@
-# GoLANG-Google-Chrome-Password-Recovery
+# Mega.co.nz Bruteforcer
 10 minutes of work, I gave up on. Was ment to bruteforce Mega.co.nz logins and scan there files. Issue is the API rate limit... Maybe add a proxy switcher.
 DOES NOT EXPORT OUT OF FILE, LISTS ALL LOGINS IN CONSOLE ONLY.
 
