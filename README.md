@@ -7,6 +7,12 @@ Saves Cracked accounts to file w/ list of files.
 * Lists files
 * Saves to Cracked File listsing login and Filetree
 
+# Mods
+  You will need to do a small hack to the mega.go file of (go-mega);
+  You need to change "API_URL" to a var like so
+  var 	API_URL              = "https://eu.api.mega.co.nz"
+
+
 # Compiling
   Import needed packages.
   go build main.go
