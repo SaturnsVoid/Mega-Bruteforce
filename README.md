@@ -1,6 +1,5 @@
 # Mega.co.nz Bruteforcer
-Bruteforce Mega.co.nz logins and scan there files. Issue is the API rate limit... Maybe add a proxy switcher.
-Saves Cracked accounts to file w/ list of files.
+A Basic Mega.co.nz Bruteforcer, Nothing special. I have a private version that has proxy support and smart error handling... among other things. Though using this as a base it wont be hard for you to make it better.
 
 # Features
 * Gives Username and Password
